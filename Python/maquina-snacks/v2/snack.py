@@ -2,7 +2,7 @@ class Snack:
     snacks_counter = 0
 
     # Defining Properties No Repeat
-    def __init__(self, name: str, cost):
+    def __init__(self, name: str, cost: float):
         Snack.snacks_counter += 1
         self.id = Snack.snacks_counter
         self.name = name

@@ -12,6 +12,9 @@ class Snacks:
     def add_snack(self, snack: Snack):
         self.list_snacks.append(snack)
 
+    def add_snack_values(self, name: str, cost: float):
+        self.add_snack(Snack(name, cost))
+
     def __str__(self):
         str_extend = ''
         for snack in self.list_snacks:
