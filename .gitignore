@@ -10,3 +10,7 @@ Python/maquina-snacks/v2/__pycache__/snacks.cpython-313.pyc
 Python/archivos/excepcion.py
 Python/catalogo/__pycache__/catalag.cpython-313.pyc
 Python/archivos/*
+Python-Mysql/seleccionar.py
+Python-Mysql/__pycache__/select.cpython-313.pyc
+Python-Mysql/insertar.py
+Python-Mysql/actualizar.py
