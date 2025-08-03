@@ -20,3 +20,5 @@ Python-Mysql/zona_fit/controllers/__pycache__/*
 Python-Mysql/zona_fit/db/__pycache__/*
 Python-Mysql/zona_fit/model/__pycache__/*
 Python-Mysql/zona_fit/services/__pycache__/*
+Python-Tkinter/01_mostrar_ventana.py
+Python-Tkinter/__pycache__/*
