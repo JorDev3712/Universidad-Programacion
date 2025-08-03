@@ -14,3 +14,9 @@ Python-Mysql/seleccionar.py
 Python-Mysql/__pycache__/select.cpython-313.pyc
 Python-Mysql/insertar.py
 Python-Mysql/actualizar.py
+Python-Mysql/eliminar.py
+Python-Mysql/conexion_pool.py
+Python-Mysql/zona_fit/controllers/__pycache__/*
+Python-Mysql/zona_fit/db/__pycache__/*
+Python-Mysql/zona_fit/model/__pycache__/*
+Python-Mysql/zona_fit/services/__pycache__/*
