@@ -22,3 +22,15 @@ Python-Mysql/zona_fit/model/__pycache__/*
 Python-Mysql/zona_fit/services/__pycache__/*
 Python-Tkinter/01_mostrar_ventana.py
 Python-Tkinter/__pycache__/*
+Python-Tkinter/zona-fit/__pycache__/*
+Python-Tkinter/zona-fit/db/__pycache__/*
+Python-Tkinter/zona-fit/models/__pycache__/*
+Python-Tkinter/zona-fit/services/__pycache__/*
+Python-Tkinter/02_etiquetas.py
+Python-Tkinter/03_funciones_lambda.py
+Python-Tkinter/04_botones.py
+Python-Tkinter/05_cajatexto.py
+Python-Tkinter/06_grid.py
+Python-Tkinter/07_login.py
+Python-Tkinter/08_tabla.py
+Python-Tkinter/09_ventana_poo.py
