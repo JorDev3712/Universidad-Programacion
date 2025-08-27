@@ -119,13 +119,13 @@ class ZonaFitWindow(tk.Tk):
         frame.grid(row=1, column=1, padx=20, sticky=tk.NSEW)
 
     def clear_fields(self):
-        self.name_textBox.delete('0', 'end')
+        self.name_textBox.delete('0', tk.END)
         self.name_textBox.insert('0', '')
 
-        self.lastname_textBox.delete('0', 'end')
+        self.lastname_textBox.delete('0', tk.END)
         self.lastname_textBox.insert('0', '')
 
-        self.membership_textBox.delete('0', 'end')
+        self.membership_textBox.delete('0', tk.END)
         self.membership_textBox.insert('0', '')
 
     def clear_table(self):
@@ -139,29 +139,58 @@ class ZonaFitWindow(tk.Tk):
         self.lastId = self.clienteService.get_auto_increment_of_client_table() - 1
         print(f'Last Id of table db Clientes={self.lastId + 1}')
 
+    def validate_int(self, value: str)->bool:
+        try:
+            int(value)
+            return True
+        except:
+            return False
+
     def on_save_button_click(self, event):
         name = self.name_textBox.get()
+        if name == '':
+            showerror(title='Error!', message='Por favor, ingresa un nombre.')
+            return
         lastname = self.lastname_textBox.get()
+        if lastname == '':
+            showerror(title='Error!', message='Por favor, ingresa un apellido.')
+            return
         membership = self.membership_textBox.get()
+        if self.validate_int(membership) is False:
+            showerror(title='Error!', message='Por favor, ingresa un valor númerico en la membresia.')
+            return
+        
+        # Updates a item from the table and db
+        if self.element_selected != '':
+            element = self.table.item(self.element_selected) # item
+            if element is not None:
+                client = Cliente(element['values'][0], name, lastname, int(membership))
+                result = self.clienteService.updateClient(client)
+                # Method to update a item
+                self.table.item(self.element_selected, values=client.to_tuple())
+                showinfo('Guardar', 'Se actualizaron los datos del cliente.')
+                self.clear_fields()
+                self.element_selected = ''
 
-        if name and lastname and membership != '':
+        else:
+            # Adds a item to table and db
             result = self.clienteService.addClient(name, lastname, membership)
             if result:
                 self.lastId = self.lastId + 1
-                self.table.insert(parent='', index=tk.END, values=(self.lastId, name, lastname, membership))
+                self.table.insert(parent='', index=tk.END, values=(self.lastId, name, lastname, int(membership)))
+                showinfo('Guardar', 'Se agregó un nuevo cliente.')
                 self.clear_fields()
-        else:
-            showerror(title='Error!', message='Por favor, completa los espacios en blanco.')
 
     def on_delete_button_click(self, event):
         if self.element_selected != '':
             element = self.table.item(self.element_selected) # item
             if element is not None:
                 row = element['values']
-                client = Cliente(row[0], row[1], row[2], row[3])
+                client = Cliente(row[0], row[1], row[2], int(row[3]))
                 result = self.clienteService.deleteClient(client)
                 if result:
                     self.table.delete(self.element_selected)
+                    showinfo('Eliminar!', message='Se ha eliminado el cliente.')
                     self.clear_fields()
                     self.element_selected = ''
 
@@ -189,13 +218,13 @@ class ZonaFitWindow(tk.Tk):
         frame.grid(row=2, column=0, columnspan=2, sticky=tk.NS)
 
     def config_events(self):
-        # Associate the "select" event of the table
+        # Associates the "select" event of the table
         self.table.bind('<<TreeviewSelect>>', self.show_selected)
         self.save_button.bind('<Button-1>', self.on_save_button_click) # Mouse Left Click
         self.delete_button.bind('<Button-1>', self.on_delete_button_click)  # Mouse Left Click
         self.clear_button.bind('<Button-1>', self.on_clear_button_click) # Mouse Left Click
 
-    # Show selected row
+    # Shows selected row
     def show_selected(self, event):
         print('On show_selected()')
         selection = self.table.selection()
