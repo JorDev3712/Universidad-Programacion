@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{titulo}}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  </head>
+  <body>
+    <div class="container">
+        <!-- Title -->
+        <div class="container py-3">
+            <h1 class="display-5 text-center text-warning">
+                {{titulo}} <i class="bi bi-award"></i>
+            </h1>
+        </div>
+        <!-- Principal Grid -->
+         <div class="container-fluid pb-3">
+            <div class="d-grid gap-3" style="grid-template-columns: 1fr 2fr;">
+                <!-- Form container -->
+                <div class="border rounded-3 p-2">
+                    <!-- Here is the form -->
+                    <form action="/save" method="post" autocomplete="off">
+                      {{forma.csrf_token}}
+                      <!-- campo oculto - hidden -->
+                       {{forma.id()}}
+                        <div class="form-floating py-2">
+                          <!-- <input type="text" class="form-control" id="name_input" placeholder="Ingresar nombre">
+                          <label for="name_input">Nombre</label> -->
+                          {{forma.name(class="form-control", placeholder="Nombre")}}
+                          {{forma.name.label}}
+                        </div>
+                        <div class="form-floating py-2">
+                          <!-- <input type="text" class="form-control" id="lastname_input" placeholder="Ingresar apellido">
+                          <label for="lastname_input">Apellido</label> -->
+                          {{forma.last_name(class="form-control", placeholder="Apellido")}}
+                          {{forma.last_name.label}}
+                        </div>
+                        <div class="form-floating py-2">
+                          <!-- <input type="number" class="form-control" id="membership_input" placeholder="Ingresar apellido" min="0" max="2000">
+                          <label for="membership_input">Membresia</label> -->
+                          {{forma.membership(class="form-control", placeholder="Membresia", min="0", max="1000")}}
+                          {{forma.membership.label}}
+                        </div>
+                        <div class="text-center py-2">
+                          <!-- <button type="submit" class="btn btn-warning btn-sm me-3">
+                            Save
+                          </button> -->
+                          {{forma.save_b(class="btn btn-warning btn-sm me-3")}}
+                          <a href="/clear" class="btn btn-danger btn-sm">Clear</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- Customer list container -->
+                <div class="border rounded-3 p-2">
+                    <!-- Here is the table of customer list -->
+                     <table class="table table-striper table-hover">
+                      <!-- Here is cabecero de columnas -->
+                      <thead class="table-warning">
+                        <tr>
+                          <th>Id</th>
+                          <th>Nombre</th>
+                          <th>Apellido</th>
+                          <th>Membresia</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for client in clients %}
+                        <tr>
+                          <td>{{client.id}}</td>
+                          <td>{{client.name}}</td>
+                          <td>{{client.last_name}}</td>
+                          <td>{{client.membership}}</td>
+                          <td class="text-center">
+                            <div>
+                              <a href="/edit/{{client.id}}" class="btn btn-warning btn-sm me-3">
+                                <i class="bi bi-pencil"></i>
+                              </a>
+                              <a href="/delete/{{client.id}}" class="btn btn-danger btn-sm">
+                                <i class="bi bi-trash3"></i>
+                              </a>
+                            </div>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                     </table>
+                </div>
+            </div>
+         </div>
+    </div>
+    
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  </body>
+</html>

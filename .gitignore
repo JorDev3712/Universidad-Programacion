@@ -34,3 +34,9 @@ Python-Tkinter/06_grid.py
 Python-Tkinter/07_login.py
 Python-Tkinter/08_tabla.py
 Python-Tkinter/09_ventana_poo.py
+Python-Flask/__pycache__/*
+Python-Flask/templates/__pycache__/*
+Python-Flask/db/__pycache__/*
+Python-Flask/models/__pycache__/*
+Python-Flask/services/__pycache__/*
+Python-Flask/repository/__pycache__/client_form.cpython-313.pyc
