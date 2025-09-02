@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-class Main {
+class MainPresentation {
     public static void main(String[] args) {
         System.out.println("*** Introduce yourself to more detail ***");
         Scanner scannerConsole = new Scanner(System.in);
