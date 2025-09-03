@@ -10,6 +10,7 @@ class MainCalculateRentagle {
         Float rec_base = Float.parseFloat(scannerConsole.nextLine());
         System.out.print("Provides the height: ");
         Float rec_height = Float.parseFloat(scannerConsole.nextLine());
+        scannerConsole.close();
         Float area = rec_base * rec_height;
         System.out.println(String.format("The Area of a rectangle is: %f", area));
     }
